@@ -1,0 +1,122 @@
+<mat-card class="example-result-card">
+  <mat-card-content>
+    <h2>Câmera 1</h2>
+    <h3>Se preferir use as teclas (  ⇦ ⇧ ⇨ ⇩ ) para controlar a direção da câmera e as teclas ( + - ) para controlar o zoom.</h3>
+    <br>
+    <br>
+
+    <mat-grid-list cols="4" rowHeight="100px">
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div class="example-label-container">
+          <label id="example-name-label" class="example-name-label">PAN: </label>
+          <label class="example-value-label">{{pan}}</label>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div class="example-label-container">
+          <label id="example-name-label" class="example-name-label">TILT: </label>
+          <label class="example-value-label">{{tilt}}</label>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div class="example-label-container">
+          <label id="example-name-label" class="example-name-label">ZOOM:</label>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div class="example-label-container">
+          <label id="example-name-label" class="example-name-label">PRESETS:</label>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <button (click)="arrowLeft()" color="primary" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <mat-slider [(ngModel)]="pan" thumbLabel tickInterval="180" step="1" min="0" max="180" [invert]="true"
+          (input)="setPan($event)" aria-label="units">
+        </mat-slider>
+
+        <button (click)="arrowRight()" color="primary" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <button (click)="arrowUp()" color="primary" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>arrow_upward</mat-icon>
+        </button>
+
+        <mat-slider [(ngModel)]="tilt" thumbLabel tickInterval="180" step="1" min="0" max="180" [vertical]="true"
+          [invert]="false" (input)="setTilt($event)" aria-label="units">
+        </mat-slider>
+
+        <button (click)="arrowDown()" color="primary" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>arrow_downward</mat-icon>
+        </button>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div class="example-button-container">
+          <button (click)="zoomIn()" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" style="margin: 5px;">
+            <mat-icon>zoom_in</mat-icon>
+          </button>
+          <button (click)="zoomOut()" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon">
+            <mat-icon>zoom_out</mat-icon>
+          </button>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <div class="example-button-container">
+          <button mat-raised-button *ngFor="let preset of presets" (click)="setPreset(preset)">
+            {{preset.name}}
+          </button>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-margin" appearance="fill">
+          <mat-label>PAN</mat-label>
+          <input matInput type="number" [(ngModel)]="pan" (change)="setPanInput()">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-margin" appearance="fill">
+          <mat-label>TILT</mat-label>
+          <input matInput type="number" [(ngModel)]="tilt" (change)="setTiltInput()">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <mat-form-field class="example-margin" appearance="fill">
+          <mat-label>Nome do Preset</mat-label>
+          <input matInput type="string" [(ngModel)]="currentPreset.name">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="createPreset()">Criar Novo</button>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="updatePreset()">Atualizar</button>
+        </div>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+  </mat-card-content>
+</mat-card>
